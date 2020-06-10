@@ -36,19 +36,22 @@ function menuMaker(data){
   let menu = document.createElement('div');
   let list = document.createElement('ul');
   let menuButton = document.querySelector('.menu-button');
+  //append
   menu.appendChild(list);
+  //class
   menu.classList.add('menu')
+  //loop
   data.forEach(obj => {
   let listItem = document.createElement('li')
   listItem.textContent = obj;
   list.appendChild(listItem);
   });
+  //evemt
   menuButton.addEventListener('click', () => {
     menu.classList.toggle('menu--open');
   });
   
-  menuButton.appendChild(menu);
-
   return menu;
 }
+let header = document.querySelector('.header');
 header.appendChild(menuMaker(menuItems));
