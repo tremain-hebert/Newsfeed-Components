@@ -85,6 +85,19 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'New Article',
+    date: 'June 9th, 2020',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+    hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+    Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor?`,
+    secondParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+    hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+    Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor?`,
+    thirdParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+    hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+    Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor?`
   }
 ];
 
@@ -111,3 +124,57 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+function createArticle(articleData){
+  let article = document.createElement('div');
+  let title = document.createElement('h2');
+  let date = document.createElement('p');
+  let articleContent = document.createElement('div');
+  let p1 = document.createElement('p');
+  let p2 = document.createElement('p');
+  let p3 = document.createElement('p');
+  let buttonContainer = document.createElement('span');
+  let buttonOpen = document.createElement('button');
+
+  //appending
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(articleContent);
+  articleContent.appendChild(p1);
+  articleContent.appendChild(p2);
+  articleContent.appendChild(p3);
+  article.appendChild(buttonContainer);
+  buttonContainer.appendChild(buttonOpen);
+
+  //styling
+  article.classList.add('article');
+  title.classList.add('title');
+  date.classList.add('date');
+  articleContent.classList.add('article-content')
+  p1.classList.add('content');
+  p2.classList.add('content');
+  p3.classList.add('content');
+  buttonContainer.classList.add('button-container');
+  buttonOpen.classList.add('expandButton');
+
+  //programatically update
+  const open = '\u25bc';
+  buttonOpen.textContent = open;
+  title.textContent = articleData.title;
+  date.textContent = articleData.date;
+  p1.textContent = articleData.firstParagraph;
+  p2.textContent = articleData.secondParagraph;
+  p3.textContent = articleData.thirdParagraph;
+
+  //events
+  buttonContainer.addEventListener('click', (e) => {
+    article.classList.toggle('article-open')
+  });
+  
+  return article;
+}
+  let articles = document.querySelector('.articles');
+
+  data.forEach((obj) => {
+    articles.appendChild(createArticle(obj));
+  });
